@@ -10,6 +10,8 @@
                 <field name="name" />
                 <field name="age" />
                 <field name="guardian" />
+                <field name="gender" optional="show" />
+                <field name="active" optional="hide"/>
 
             </tree>
         </field>
@@ -42,7 +44,12 @@
                             <field name="age" />
                             <field name="guardian" />
                         </group>
+
                     </group>
+                    <group>
+                        <field name="active" />
+                    </group>
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_follower" />
