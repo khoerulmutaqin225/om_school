@@ -45,15 +45,31 @@
                                 context="{'res_partner_search_mode': 'supplier'}" />
                         </group>
                         <group>
+                            <field name="date_from" widget="daterange" options="{'related_end_date': 'date_to'}" />
+                            <field name="date_to"  widget="daterange" options="{'related_start_date': 'date_from'}" />
                             <field name="age" />
                             <field name="guardian" />
                         </group>
-
                     </group>
+                    <!-- <group>
+                        <label for="date_from" string="Date">
+                            <div class="o_row">
+                                <field name="date_from" widget="daterange" nolabel="1" class="oe_inline"
+                    options="{'related_end_date': 'date_end'}" />
+                                <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                <field name="date_end" widget="daterange" nolabel="1" class="oe_inline"
+                    options="{'related_end_date': 'date_end'}" />
+                            </div>
+
+                        </label>
+                        <field name="date_tz" />
+                    </group> -->
+
                     <notebook>
                         <page>
                             <field name="video_url" />
-                            <field name="embed_code" class="mt-2" widget="video_preview" />
+                            <field name="embed_code" class="mt-2" widget="video_preview"
+                                options='{"video_url_field": "video_url"}' />
                         </page>
                     </notebook>
                     <group>

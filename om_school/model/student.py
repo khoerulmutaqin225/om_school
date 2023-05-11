@@ -1,5 +1,5 @@
 # oimp
-from odoo import api,fields, models
+from odoo import api, fields, models
 
 # library external video view
 from odoo.addons.website.tools import get_video_embed_code
@@ -15,8 +15,10 @@ class SchoolStudent(models.Model):
     guardian = fields.Char(string='Guardian')
     customer_id = fields.Many2one('res.partner', string='Customer')
     supplier_id = fields.Many2one('res.partner', string='Supplier')
-
     note = fields.Text('Note')
+    date_from = fields.Datetime('From')
+    date_to = fields.Datetime('To')
+
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
@@ -28,7 +30,7 @@ class SchoolStudent(models.Model):
     video_url = fields.Char('Video URL',
                             help='URL of a video for showcasing your product')
     embed_code = fields.Char(compute="_compute_embed_code")
-    
+
     @api.depends('video_url')
     def _compute_embed_code(self):
         for rec in self:
