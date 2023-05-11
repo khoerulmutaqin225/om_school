@@ -17,4 +17,6 @@ class SchoolStudent(models.Model):
         
     ], string='gender')
     image = fields.Binary(string='Image')
+    active = fields.Boolean(string='Active', default=True)
+    
     
