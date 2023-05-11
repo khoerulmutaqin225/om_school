@@ -11,7 +11,7 @@
                 <field name="age" />
                 <field name="guardian" />
                 <field name="gender" optional="show" />
-                <field name="active" optional="hide"/>
+                <field name="active" optional="hide" />
 
             </tree>
         </field>
@@ -39,6 +39,10 @@
                         <!-- Add your fields here -->
                         <group>
                             <field name="gender" />
+                            <field name="customer_id" widget="res_partner_many2one"
+                                context="{'res_partner_search_mode': 'customer'}" />
+                            <field name="supplier_id" widget="res_partner_many2one"
+                                context="{'res_partner_search_mode': 'supplier'}" />
                         </group>
                         <group>
                             <field name="age" />
@@ -46,6 +50,12 @@
                         </group>
 
                     </group>
+                    <notebook>
+                        <page>
+                            <field name="video_url" />
+                            <field name="embed_code" class="mt-2" widget="video_preview" />
+                        </page>
+                    </notebook>
                     <group>
                         <field name="active" />
                     </group>
@@ -60,6 +70,8 @@
             </form>
         </field>
     </record>
+
+
     <!-- student.search search view -->
     <record id="student_search_view" model="ir.ui.view">
         <field name="name">school.student.search</field>
