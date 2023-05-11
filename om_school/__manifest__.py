@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "School Management",
+
+    'summary': """
+        School Management Software""",
+
+    'description': """
+        Long description of module's purpose
+    """,
+
+    'author': "Khoerul Mutaqin",
+    'website': "http://www.khoerulmutaqinkm.io",
+
+    # Categories can be used to filter modules in modules listing
+    # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
+    # for the full list
+    'category': 'Uncategorized',
+    'version': '0.1',
+
+    # any module necessary for this one to work correctly
+    'depends': ['base', 'mail'],
+
+    # always loaded
+    'data': [
+        'security/ir.model.access.csv',
+        'views/student.xml',
+        # 'views/course_views.xml',
+        # 'views/course_category_views.xml',
+        # 'views/rest_partner.xml',
+        # 'views/session_views.xml',
+        # 'report/session_report.xml',
+        # 'views/progress_views.xml',
+
+    ],
+    # only loaded in demonstration mode
+    'demo': [
+        # 'demo/demo.xml',
+    ],
+}
