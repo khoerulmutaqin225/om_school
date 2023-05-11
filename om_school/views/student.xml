@@ -53,6 +53,25 @@
             </form>
         </field>
     </record>
+    <!-- student.search search view -->
+    <record id="student_search_view" model="ir.ui.view">
+        <field name="name">school.student.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search string="Student">
+                <!-- Add your fields here -->
+                <field name="name" filter_domain="[('name','ilike',self)]" string="name" />
+                <field name="guardian" filter_domain="[('guardian','ilike',self)]" string="Guardian" />
+                <separator />
+                <filter name="Male" string="Male" domain="[('gender', '=', 'male')]" />
+                <filter name="Female" string="Female" domain="[('gender', '=', 'female')]" />
+                <!-- <field name="name"/> -->
+                <searchpanel>
+                    <field name="gender" icon="fa-users" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
 
     <!-- action.student action window -->
     <record id="action_student" model="ir.actions.act_window">
