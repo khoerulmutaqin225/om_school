@@ -76,6 +76,7 @@
                         <group>
                             <field name="name" groups="om_hospital.group_hospital_manager"/>
                             <field name="email_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <group>

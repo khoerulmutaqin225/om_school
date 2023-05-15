@@ -83,6 +83,14 @@ class HospitalPatient(models.Model):
             res.append((rec.id, '%s - %s' % (rec.name_seq, rec.patient_name)))
         return res
 
+
+    @api.model
+    def name_search(self, name='',args=None, operator='ilike', limit=100)
+        if args is None:
+            args = []
+        domain = args +['|','|',('name',operator,name),('name_seq',operator, name), ('patient_name',operator,name)]
+        return super(HospitalPatient, self).search(domain, limit=limit).getname()
+
     # Add Constrains For a Field
     # https://www.youtube.com/watch?v=ijS-N1CdiWU&list=PLqRRLx0cl0hoJhjFWkFYowveq2Zn55dhM&index=14
     @api.constrains('patient_age')
@@ -187,3 +195,5 @@ class HospitalPatient(models.Model):
         ('fe_male', 'Female'),
     ], string="Doctor Gender")
     patient_name_upper = fields.Char(compute='_compute_upper_name', inverse='_inverse_upper_name')
+    company_id = fields.Many2one('res.company', required=True,default=lambda self:self.env.user.company_id)
+    
