@@ -1,6 +1,20 @@
 from odoo import api, fields, models, exceptions
 
 
+class ProjectTags(models.Model):
+    """ Tags of project's tasks """
+    _name = "project.tags"
+    # project_tags
+    _description = "Project Tags"
+
+    name = fields.Char('Tag Name', required=True)
+    color = fields.Integer(string='Color Index')
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)', "Tag name already exists!"),
+    ]
+
+
 class Progress(models.Model):
     _name = 'arisnew.progress'
     _inherit = 'mail.thread'
@@ -12,7 +26,7 @@ class Progress(models.Model):
 
     pic = fields.Char(string='Pic', track_visibility='onchange')
 
-    tag_ids = fields.Many2many('project.tags', string='Tags')
+    tag_ids = fields.Many2many('project.tags','progress_brand_rel','tag_id', string='Tags')
 
     tgl_awal = fields.Date(
         string='Tanggal awal',
@@ -23,7 +37,7 @@ class Progress(models.Model):
 
     tgl_akhir = fields.Date(
         string='Tanggal Akhir',
-        default=fields.Datetime.now() + timedelta(days=7),
+        default=fields.Datetime.now(),
         track_visibility='onchange')
 
     progress = fields.Integer(string='Progress',  track_visibility='onchange')
@@ -85,15 +99,3 @@ class Progress(models.Model):
                 record.taken_seats = 0.0
             else:
                 record.taken_seats = 100.0 * record.progress / 100
-
-    class ProjectTags(models.Model):
-        """ Tags of project's tasks """
-        _name = "project.tags"
-        _description = "Project Tags"
-
-        name = fields.Char('Tag Name', required=True)
-        color = fields.Integer(string='Color Index')
-
-        _sql_constraints = [
-            ('name_uniq', 'unique (name)', "Tag name already exists!"),
-        ]

@@ -13,9 +13,9 @@
                     <field name="deskripsi" />
                     <field name="pic" />
                     <field name="tgl_awal" />
-                    <field name="do_that" />
-                    <field name="tgl_akhir" />
-                    <field name="taken_seats" widget="progressbar" />
+                    <field name="do_that" optional="hide" />
+                    <field name="tgl_akhir" optional="hide" />
+                    <field name="progress" widget="progressbar" />
                     <field name="state" />
                 </tree>
             </field>
@@ -65,8 +65,9 @@
                             <field name="tag_ids" widget="many2many_tags"
                                 options="{'color_field': 'color', 'no_create_edit': True}" />
                             <field name="progress"
-                                attrs="{'readonly': [('state', '!=' , 'draft')]}" />
-                            <field name="taken_seats" widget="progressbar" />
+                                attrs="{'readonly': [('state', '!=' , 'draft')]}"
+                                string="Progress (%)" widget="progressbar" />
+                            <!-- <field name="taken_seats" widget="progressbar" /> -->
                         </group>
                         <notebook>
                             <page name="description_page" string="Description">
