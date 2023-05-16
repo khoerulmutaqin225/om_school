@@ -85,7 +85,7 @@ class HospitalPatient(models.Model):
 
 
     @api.model
-    def name_search(self, name='',args=None, operator='ilike', limit=100)
+    def name_search(self, name='',args=None, operator='ilike', limit=100):
         if args is None:
             args = []
         domain = args +['|','|',('name',operator,name),('name_seq',operator, name), ('patient_name',operator,name)]

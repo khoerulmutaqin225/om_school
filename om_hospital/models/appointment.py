@@ -45,6 +45,8 @@ class HospitalAppointment(models.Model):
     # https://www.youtube.com/watch?v=lPHWsw3Iclk&list=PLqRRLx0cl0hoJhjFWkFYowveq2Zn55dhM&index=21
     def action_confirm(self):
         for rec in self:
+            # patient = self.env['hospital.patient'].search([])
+            # print('patient...', patient)
             rec.state = 'confirm'
             return {
                 'effect': {
