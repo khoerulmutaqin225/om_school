@@ -124,7 +124,8 @@
                     <notebook>
                         <page string="Doctor Prescription">
                            <field name="appointment_lines">
-                               <tree editable="bottom">
+                               <!-- <tree editable="bottom"> -->
+                               <tree editable="top">
                                    <field name="sequence" widget="handle"/>
                                    <field name="product_id"/>
                                    <field name="product_qty"/>

@@ -89,9 +89,9 @@ class HospitalPatient(models.Model):
         if args is None:
             args = []
         domain = args +['|','|',('name',operator,name),('name_seq',operator, name), ('patient_name',operator,name)]
-        return super(HospitalPatient, self).search(domain, limit=limit).getname()
+        return super(HospitalPatient, self).search(domain, limit=limit).name_get()
 
-    # Add Constrains For a Field
+    # Add Constrains For a Field    
     # https://www.youtube.com/watch?v=ijS-N1CdiWU&list=PLqRRLx0cl0hoJhjFWkFYowveq2Zn55dhM&index=14
     @api.constrains('patient_age')
     def check_age(self):
