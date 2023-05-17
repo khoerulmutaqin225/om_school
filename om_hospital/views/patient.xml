@@ -88,7 +88,7 @@
                     <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
                 </div>
-            </form>
+            </form> 
         </field>
     </record>
 
@@ -103,7 +103,7 @@
                 <field name="patient_age"/>
                 <field name="email_id"/>
                 <templates>
-                    <t t-name="kanban-box">
+                      <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hospital_patient_kanban">
                             <t t-if="record.image.raw_value">
                                 <div class="o_kanban_image_fill_left d-none d-md-block"
