@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytz
+import json
 from odoo import models, fields, api,  _
 
 
@@ -82,10 +83,10 @@ class HospitalAppointment(models.Model):
     # Give Domain For A field dynamically in Onchange
     # How To Give Domain For A Field Based On Another Field
     # https://www.youtube.com/watch?v=IpXXYCsK2ow&list=PLqRRLx0cl0hoJhjFWkFYowveq2Zn55dhM&index=65
-    @api.onchange('partner_id')
-    def onchange_partner_id(self):
-        for rec in self:
-            return {'domain': {'order_id': [('partner_id', '=', rec.partner_id.id)]}}
+    # @api.onchange('partner_id')
+    # def onchange_partner_id(self):
+    #     for rec in self:
+    #         return {'domain': {'order_id': [('partner_id', '=', rec.partner_id.id)]}}
 
     @api.model
     def default_get(self, fields):
@@ -123,6 +124,7 @@ class HospitalAppointment(models.Model):
     appointment_datetime = fields.Datetime(string='Date Time')
     partner_id = fields.Many2one('res.partner', string="Customer")
     order_id = fields.Many2one('sale.order', string="Sale Order")
+    order_id_domain = fields.Char(compute="_compute_order_id_domain", readonly=True, store=False)
     amount = fields.Float(string="Total Amount")
     state = fields.Selection([
             ('draft', 'Draft'),
@@ -132,6 +134,12 @@ class HospitalAppointment(models.Model):
         ], string='Status', readonly=True, default='draft')
 
     product_id = fields.Many2one('product.template', string="Product Template")
+
+    # @api.multi
+    @api.depends('partner_id')
+    def _compute_order_id_domain(self):
+       for rec in self:
+           rec.order_id_domain = json.dumps([('partner_id', '=', rec.partner_id.id), ('state', '=', 'draft')])
 
     @api.onchange('product_id')
     def _onchange_product_id(self):

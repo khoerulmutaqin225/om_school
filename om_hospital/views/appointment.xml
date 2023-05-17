@@ -114,8 +114,8 @@
                             <field name="appointment_date_end" />
                             <field name="appointment_datetime"/>
                             <field name="partner_id"/>
-                            <field name="order_id"/>
-                            <field name="product_id"/>
+                            <field name="order_id" domain="order_id_domain"/>
+                            <field name="order_id_domain" invisible="1"/>
                         </group>
                     </group>
                     <group>

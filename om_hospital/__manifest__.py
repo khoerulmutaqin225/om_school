@@ -14,7 +14,9 @@
                 'mail',
                 'report_xlsx',
                 'website',
-                'website_slides'
+                'website_slides',
+                'point_of_sale',
+                'web_domain_field'
                 ],
     'demo': [],
     'data': [
